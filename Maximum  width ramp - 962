@@ -1,1 +1,23 @@
+class Solution {
+public:
+    int maxWidthRamp(vector<int>& nums) {
+        int n=nums.size();
 
+        vector<pair<int,int>> indexnum;
+        for(int i=0;i<n;i++){
+           indexnum.push_back({nums[i] , i});
+        }
+
+        sort(indexnum.begin(),indexnum.end());
+
+        int minindex=indexnum[0].second;
+        int maxramp=0;
+
+        for(int i=1;i<n;i++){
+            int currentindex = indexnum[i].second;
+             maxramp = max(maxramp,currentindex - minindex);
+             minindex = min(minindex , currentindex);
+        }
+        return maxramp;
+    }
+};
